@@ -6,10 +6,11 @@ __pycache__/
 .venv/**
 
 # Node/Next.js
-web/node_modules/
-web/.next/
-web/.turbo/
-web/.vercel/
+node_modules/**
+web/node_modules/**
+web/.next/**
+web/.turbo/**
+web/.vercel/**
 
 # Generated audio
 web/public/audio/*.wav
@@ -17,3 +18,7 @@ web/public/audio/*.wav
 # OS/editor
 .DS_Store
 *.log
+
+# Environment
+.env
+.env.local
