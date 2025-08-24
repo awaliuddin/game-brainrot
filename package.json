@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "tts:restart": "powershell -ExecutionPolicy Bypass -File ./scripts/restart-xtts.ps1 -Activate -Restart",
+    "tts:start": "powershell -ExecutionPolicy Bypass -File ./scripts/restart-xtts.ps1",
+    "tts:restart:bash": "bash ./scripts/restart-xtts.sh --activate --restart",
+    "tts:start:bash": "bash ./scripts/restart-xtts.sh --activate",
+    "dev": "powershell -ExecutionPolicy Bypass -File ./scripts/brainrot-dev.ps1",
+    "dev:bash": "bash ./scripts/brainrot-dev.sh"
+  },
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0"
+  }
+}

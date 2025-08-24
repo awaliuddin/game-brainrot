@@ -1,0 +1,9 @@
+# BrainRot backend (XTTS bridge) requirements
+fastapi>=0.112
+uvicorn[standard]>=0.30
+# Coqui TTS with XTTS-v2
+TTS==0.22.0
+# Torch pin to avoid weights_only error with XTTS checkpoints
+torch<2.6
+# Required for FastAPI form uploads
+python-multipart>=0.0.9

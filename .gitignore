@@ -1,0 +1,19 @@
+# BrainRot ignore
+# Python
+__pycache__/
+*.pyc
+.venv/
+.venv/**
+
+# Node/Next.js
+web/node_modules/
+web/.next/
+web/.turbo/
+web/.vercel/
+
+# Generated audio
+web/public/audio/*.wav
+
+# OS/editor
+.DS_Store
+*.log

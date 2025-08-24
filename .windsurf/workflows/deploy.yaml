@@ -1,0 +1,20 @@
+name: BrainRot Deploy Workflow
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: true
+
+jobs:
+  setup:
+    steps:
+      - run: npm install && npm run build
+
+  test:
+    needs: setup
+    steps:
+      - run: npm run test
+
+  deploy:
+    needs: test
+    steps:
+      - run: npm run deploy:prod

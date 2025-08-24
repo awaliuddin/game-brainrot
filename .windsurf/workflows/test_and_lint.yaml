@@ -1,0 +1,21 @@
+name: BrainRot Test & Lint Workflow
+on:
+  push: true
+  pull_request: true
+
+jobs:
+  setup:
+    steps:
+      - run: npm install
+      - run: npm run build
+
+  lint:
+    needs: setup
+    steps:
+      - run: npm run lint
+
+  test:
+    needs: lint
+    steps:
+      - run: npm run test:gamification
+      - run: npm run test:sounds

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠💥 Brainrot Character Construction Studio 💥🧠</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Welcome Screen -->
+        <div id="welcome-screen" class="screen">
+            <div class="welcome-content">
+                <h1 class="glitch-title">🧠💥 BRAINROT CHARACTER CONSTRUCTION STUDIO 💥🧠</h1>
+                <p class="welcome-text">Create your own chaotic brain rot characters with weird phrases, absurd backstories, AND EPIC SOUNDS! 🔊</p>
+                
+                <div class="example-characters">
+                    <h3>✨ LEGENDARY EXAMPLES ✨</h3>
+                    <div class="examples-grid">
+                        <div class="example-card">
+                            <h4>Cocofanto Elefanto</h4>
+                            <p>Elephant with coconut shell body</p>
+                            <div class="example-phrase">"Coco fanto elefanto, protetto da una noce di cocco"</div>
+                            <button class="sound-preview-btn" data-sound="cocofanto">🔊 Hear it!</button>
+                        </div>
+                        <div class="example-card">
+                            <h4>Tralalero Tralala</h4>
+                            <p>Three-legged shark in Nike sneakers</p>
+                            <div class="example-phrase">"Tralalero tralala, smerdo pure nell'aldilà"</div>
+                            <button class="sound-preview-btn" data-sound="tralalero">🔊 Hear it!</button>
+                        </div>
+                        <div class="example-card">
+                            <h4>Bombardino Crocodilo</h4>
+                            <p>Crocodile head with airplane body</p>
+                            <div class="example-phrase">"Bombardino crocodilo, ready for takeoff"</div>
+                            <button class="sound-preview-btn" data-sound="bombardino">🔊 Hear it!</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="start-btn" class="btn btn--primary mega-button">
+                    🚀 START CREATING CHAOS 🚀
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Creation Studio -->
+        <div id="creation-studio" class="screen hidden">
+            <!-- Navigation Tabs -->
+            <nav class="tab-nav">
+                <button class="tab-btn active" data-tab="character">🦈 CHARACTER</button>
+                <button class="tab-btn" data-tab="name">📛 NAME</button>
+                <button class="tab-btn" data-tab="phrase">💬 PHRASE</button>
+                <button class="tab-btn" data-tab="sounds">🔊 SOUNDS</button>
+                <button class="tab-btn" data-tab="backstory">📚 BACKSTORY</button>
+                <button class="tab-btn" data-tab="preview">✨ PREVIEW</button>
+            </nav>
+
+            <!-- Character Tab -->
+            <div id="character-tab" class="tab-content active">
+                <h2>🦈 Build Your Hybrid Character</h2>
+                <div class="creation-grid">
+                    <div class="selection-group">
+                        <h3>🐾 Choose Animal</h3>
+                        <select id="animal-select" class="form-control">
+                            <option value="">Select an animal...</option>
+                        </select>
+                        <button class="btn btn--secondary" data-random="animal">🎲 Random</button>
+                        <div class="sound-suggestion" id="animal-sound"></div>
+                    </div>
+                    
+                    <div class="selection-group">
+                        <h3>🎾 Choose Object</h3>
+                        <select id="object-select" class="form-control">
+                            <option value="">Select an object...</option>
+                        </select>
+                        <button class="btn btn--secondary" data-random="object">🎲 Random</button>
+                        <div class="sound-suggestion" id="object-sound"></div>
+                    </div>
+                    
+                    <div class="selection-group">
+                        <h3>🍕 Choose Food</h3>
+                        <select id="food-select" class="form-control">
+                            <option value="">Select food...</option>
+                        </select>
+                        <button class="btn btn--secondary" data-random="food">🎲 Random</button>
+                        <div class="sound-suggestion" id="food-sound"></div>
+                    </div>
+                </div>
+                
+                <div class="character-preview">
+                    <h3>🎭 Character Description</h3>
+                    <div id="character-description" class="description-box">
+                        Select components to see your character...
+                    </div>
+                </div>
+                
+                <button id="randomize-character" class="btn btn--primary mega-button">
+                    🌪️ RANDOMIZE EVERYTHING 🌪️
+                </button>
+            </div>
+
+            <!-- Name Tab -->
+            <div id="name-tab" class="tab-content">
+                <h2>📛 Generate Epic Names</h2>
+                <div class="name-options">
+                    <div class="name-patterns">
+                        <h3>🎨 Name Patterns</h3>
+                        <button class="btn btn--outline" data-pattern="pattern1">Pattern 1: Sound + Suffix</button>
+                        <button class="btn btn--outline" data-pattern="pattern2">Pattern 2: Repetitive + Italian</button>
+                        <button class="btn btn--outline" data-pattern="pattern3">Pattern 3: Onomatopoeia</button>
+                    </div>
+                    
+                    <div class="custom-name">
+                        <h3>✏️ Custom Name</h3>
+                        <input type="text" id="custom-name" class="form-control" placeholder="Enter your own name...">
+                        <button id="tts-name" class="btn btn--secondary">🔊 Hear Name</button>
+                    </div>
+                    
+                    <div class="generated-names">
+                        <h3>🎯 Generated Options</h3>
+                        <div id="name-suggestions" class="suggestion-list"></div>
+                    </div>
+                </div>
+                
+                <div class="selected-name">
+                    <h3>👑 Selected Name</h3>
+                    <div id="final-name" class="name-display">No name selected</div>
+                </div>
+                
+                <button id="randomize-name" class="btn btn--primary mega-button">
+                    🎪 RANDOM NAME CHAOS 🎪
+                </button>
+            </div>
+
+            <!-- Phrase Tab -->
+            <div id="phrase-tab" class="tab-content">
+                <h2>💬 Create Catchphrases</h2>
+                <div class="phrase-builder">
+                    <div class="phrase-types">
+                        <h3>🗣️ Phrase Types</h3>
+                        <button class="btn btn--outline" data-phrase="chant">Repetitive Chant</button>
+                        <button class="btn btn--outline" data-phrase="onomatopoeia">Sound Effects</button>
+                        <button class="btn btn--outline" data-phrase="gibberish">Italian Gibberish</button>
+                        <button class="btn btn--outline" data-phrase="template">Meme Template</button>
+                    </div>
+                    
+                    <div class="phrase-elements">
+                        <h3>🧩 Building Blocks</h3>
+                        <div class="syllable-grid" id="syllable-grid"></div>
+                    </div>
+                    
+                    <div class="phrase-preview">
+                        <h3>📢 Your Phrase</h3>
+                        <div id="phrase-display" class="phrase-box">Click elements to build your phrase...</div>
+                        <div class="phrase-controls">
+                            <button id="tts-phrase" class="btn btn--secondary">🔊 Hear Phrase</button>
+                            <button id="clear-phrase" class="btn btn--secondary">🗑️ Clear</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="randomize-phrase" class="btn btn--primary mega-button">
+                    🎭 PHRASE ROULETTE 🎭
+                </button>
+            </div>
+
+            <!-- Sounds Tab - NEW -->
+            <div id="sounds-tab" class="tab-content">
+                <h2>🔊 Sound Studio</h2>
+                
+                <!-- Sound Control Panel -->
+                <div class="sound-control-panel">
+                    <div class="master-controls">
+                        <h3>🎛️ Master Controls</h3>
+                        <div class="control-group">
+                            <label>🔊 Master Volume</label>
+                            <input type="range" id="master-volume" min="0" max="100" value="75" class="volume-slider">
+                            <span id="volume-display">75%</span>
+                        </div>
+                        <div class="control-buttons">
+                            <button id="play-all" class="btn btn--primary">▶️ Play All</button>
+                            <button id="stop-all" class="btn btn--secondary">⏹️ Stop All</button>
+                            <button id="record-mix" class="btn btn--outline">🎙️ Record Mix</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Voice Effects -->
+                    <div class="voice-effects-panel">
+                        <h3>🎭 Voice Effects</h3>
+                        <div class="effects-grid">
+                            <button class="effect-btn" data-effect="frog_filter">🐸 Frog Voice</button>
+                            <button class="effect-btn" data-effect="computer_vocoder">🤖 Computer Voice</button>
+                            <button class="effect-btn" data-effect="elegant_reverb">✨ Elegant Voice</button>
+                            <button class="effect-btn" data-effect="chaotic_distortion">🌪️ Chaos Voice</button>
+                            <button class="effect-btn" data-effect="robotic_pitch">🦾 Robot Voice</button>
+                            <button class="effect-btn" data-effect="underwater_echo">🌊 Underwater</button>
+                        </div>
+                        <div class="active-effects">
+                            <h4>Active Effects:</h4>
+                            <div id="active-effects-list">None</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sound Library -->
+                <div class="sound-library">
+                    <h3>🎵 Sound Library</h3>
+                    
+                    <!-- Italian Brain Rot Classics -->
+                    <div class="sound-category">
+                        <h4>🇮🇹 Italian Brain Rot Classics</h4>
+                        <div class="sound-grid" id="italian-sounds"></div>
+                    </div>
+                    
+                    <!-- Base Sounds -->
+                    <div class="sound-category">
+                        <h4>🔧 Base Sounds</h4>
+                        <div class="sound-grid" id="base-sounds"></div>
+                    </div>
+                    
+                    <!-- Syllable Sounds -->
+                    <div class="sound-category">
+                        <h4>🗣️ Syllable Building Blocks</h4>
+                        <div class="syllable-sounds" id="syllable-sounds"></div>
+                    </div>
+                </div>
+
+                <!-- Sound Mixer -->
+                <div class="sound-mixer">
+                    <h3>🎚️ Sound Mixer</h3>
+                    <div class="mixer-tracks" id="mixer-tracks">
+                        <div class="track-info">Add sounds to start mixing!</div>
+                    </div>
+                    <div class="mixer-controls">
+                        <button id="add-track" class="btn btn--secondary">➕ Add Track</button>
+                        <button id="clear-mixer" class="btn btn--outline">🗑️ Clear All</button>
+                        <button id="export-mix" class="btn btn--primary">💾 Export Mix</button>
+                    </div>
+                </div>
+
+                <!-- Character Sound Assignment -->
+                <div class="character-sound-assignment">
+                    <h3>🎭 Character Sound Profile</h3>
+                    <div class="sound-profile">
+                        <div class="profile-section">
+                            <h4>🔊 Character Voice:</h4>
+                            <div id="character-voice" class="sound-assignment">Not set</div>
+                            <button id="auto-assign-voice" class="btn btn--secondary">🎲 Auto-Assign</button>
+                        </div>
+                        <div class="profile-section">
+                            <h4>💬 Catchphrase Audio:</h4>
+                            <div id="catchphrase-audio" class="sound-assignment">Not set</div>
+                            <button id="generate-catchphrase-audio" class="btn btn--secondary">🎯 Generate</button>
+                        </div>
+                        <div class="profile-section">
+                            <h4>🎵 Theme Sound:</h4>
+                            <div id="theme-sound" class="sound-assignment">Not set</div>
+                            <button id="auto-assign-theme" class="btn btn--secondary">🎲 Auto-Assign</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Backstory Tab -->
+            <div id="backstory-tab" class="tab-content">
+                <h2>📚 Epic Backstory Creation</h2>
+                <div class="backstory-builder">
+                    <div class="trait-section">
+                        <h3>🎭 Character Traits</h3>
+                        <div id="trait-options" class="option-buttons"></div>
+                        <div id="selected-trait" class="selected-item">No trait selected</div>
+                    </div>
+                    
+                    <div class="power-section">
+                        <h3>⚡ Superpowers</h3>
+                        <div id="power-options" class="option-buttons"></div>
+                        <div id="selected-power" class="selected-item">No power selected</div>
+                    </div>
+                    
+                    <div class="origin-section">
+                        <h3>🌟 Origin Story</h3>
+                        <div id="origin-options" class="option-buttons"></div>
+                        <div id="selected-origin" class="selected-item">No origin selected</div>
+                    </div>
+                </div>
+                
+                <button id="randomize-backstory" class="btn btn--primary mega-button">
+                    📖 RANDOM LORE DROP 📖
+                </button>
+            </div>
+
+            <!-- Preview Tab -->
+            <div id="preview-tab" class="tab-content">
+                <h2>✨ Your Brainrot Character</h2>
+                <div class="character-card">
+                    <div class="character-header">
+                        <h3 id="preview-name">Character Name</h3>
+                        <div id="meme-score" class="meme-score">🔥 Meme Score: 0/10</div>
+                    </div>
+                    
+                    <div class="character-details">
+                        <div class="detail-section">
+                            <h4>🎭 Appearance</h4>
+                            <p id="preview-description">No character created yet...</p>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>💬 Catchphrase</h4>
+                            <p id="preview-phrase">"..."</p>
+                            <button id="play-catchphrase" class="btn btn--sm">🔊 Play</button>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>🎵 Sound Profile</h4>
+                            <div class="sound-preview-controls">
+                                <button id="play-character-voice" class="btn btn--sm">🗣️ Voice</button>
+                                <button id="play-theme-sound" class="btn btn--sm">🎵 Theme</button>
+                                <button id="play-full-intro" class="btn btn--primary">🎪 Full Intro</button>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>🎪 Personality</h4>
+                            <p id="preview-trait">Unknown</p>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>⚡ Superpower</h4>
+                            <p id="preview-power">None</p>
+                        </div>
+                        
+                        <div class="detail-section">
+                            <h4>📚 Origin Story</h4>
+                            <p id="preview-origin">Mystery...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="character-actions">
+                        <button id="export-character" class="btn btn--primary">📋 Copy Character</button>
+                        <button id="export-audio-package" class="btn btn--secondary">🎵 Download Sounds</button>
+                        <button id="share-character" class="btn btn--secondary">🔗 Share</button>
+                        <button id="reset-character" class="btn btn--outline">🔄 New Character</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Master Controls -->
+            <div class="master-controls">
+                <button id="chaos-mode" class="btn btn--primary mega-button chaos-button">
+                    🌪️💥 CHAOS MODE: RANDOMIZE EVERYTHING 💥🌪️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Context (Hidden Audio Elements) -->
+    <div id="audio-context" style="display: none;">
+        <audio id="audio-player" preload="none"></audio>
+        <audio id="tts-player" preload="none"></audio>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
